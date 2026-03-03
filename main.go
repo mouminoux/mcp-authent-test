@@ -40,7 +40,7 @@ func main() {
 			}
 
 			// Extract Bearer token
-			tokenString := strings.TrimPrefix(authHeader, "Bearer ")
+			tokenString := strings.TrimPrefix(strings.TrimPrefix(authHeader, "Bearer "), "bearer ")
 			if tokenString == authHeader {
 				// No "Bearer " prefix found
 				return mcp.NewToolResultError("Invalid Authorization header format. Expected: Bearer <token>"), nil
