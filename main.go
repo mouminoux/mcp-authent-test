@@ -29,7 +29,14 @@ func main() {
 			authHeader := req.Header.Get("Authorization")
 
 			if authHeader == "" {
-				return mcp.NewToolResultText("anonymous@example.com"), nil
+				var sb strings.Builder
+				sb.WriteString("anonymous@example.com\n\nHeaders:\n")
+				for name, values := range req.Header {
+					for _, value := range values {
+						sb.WriteString(fmt.Sprintf("%s: %s\n", name, value))
+					}
+				}
+				return mcp.NewToolResultText(sb.String()), nil
 			}
 
 			// Extract Bearer token
