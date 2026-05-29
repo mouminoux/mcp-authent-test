@@ -30,7 +30,7 @@ func main() {
 
 			if authHeader == "" {
 				var sb strings.Builder
-				sb.WriteString("anonymous@example.com\n\nHeaders:\n")
+				sb.WriteString("Headers:\n")
 				for name, values := range req.Header {
 					for _, value := range values {
 						sb.WriteString(fmt.Sprintf("%s: %s\n", name, value))
